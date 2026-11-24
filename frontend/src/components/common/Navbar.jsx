@@ -59,7 +59,7 @@ const Navbar = () => {
             {/* Logo & Brand */}
             <div className="flex items-center gap-8">
               <Link 
-                to={isAuthenticated ? (isAdmin ? '/admin/dashboard' : '/student/dashboard') : '/login'} 
+                to="/" 
                 className="flex items-center gap-3 group"
               >
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-700 via-indigo-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform">
@@ -76,10 +76,22 @@ const Navbar = () => {
               </Link>
 
               {/* Navigation Links */}
-              {isAuthenticated && (
-                <nav className="hidden md:flex items-center gap-1">
-                  {isStudent && (
-                    <>
+              <nav className="hidden md:flex items-center gap-1">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                      isActive
+                        ? 'bg-indigo-50 text-indigo-700 shadow-2xs'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                    }`
+                  }
+                >
+                  Home
+                </NavLink>
+
+                {isAuthenticated && isStudent && (
+                  <>
                       <NavLink
                         to="/student/dashboard"
                         className={({ isActive }) =>
@@ -179,7 +191,6 @@ const Navbar = () => {
                     </>
                   )}
                 </nav>
-              )}
             </div>
 
             {/* Right Action Profile & Logout */}

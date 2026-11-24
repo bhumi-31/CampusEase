@@ -4,6 +4,9 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/common/Navbar';
 import ProtectedRoute from './components/common/ProtectedRoute';
 
+// Public Landing Page
+import LandingPage from './pages/LandingPage';
+
 // Auth Pages
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
@@ -19,14 +22,6 @@ import AdminApprovals from './pages/admin/AdminApprovals';
 import AdminResources from './pages/admin/AdminResources';
 import AdminUsers from './pages/admin/AdminUsers';
 
-// Root Redirect Component
-const RootRedirect = () => {
-  const { isAuthenticated, isAdmin, loading } = useAuth();
-  if (loading) return null;
-  if (!isAuthenticated) return <Navigate to="/login" replace />;
-  return <Navigate to={isAdmin ? "/admin/dashboard" : "/student/dashboard"} replace />;
-};
-
 function App() {
   return (
     <AuthProvider>
@@ -35,8 +30,8 @@ function App() {
           <Navbar />
           <main className="flex-1">
             <Routes>
-              {/* Public & Auth Routes */}
-              <Route path="/" element={<RootRedirect />} />
+              {/* Public Landing Page */}
+              <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
 
