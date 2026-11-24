@@ -10,7 +10,10 @@ import {
   ClipboardCheck, 
   LogOut, 
   ShieldCheck,
-  GraduationCap
+  GraduationCap,
+  School,
+  Sparkles,
+  Bell
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -23,190 +26,217 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-slate-200/80 shadow-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          
-          {/* Logo & Brand */}
-          <div className="flex items-center gap-8">
-            <Link 
-              to={isAuthenticated ? (isAdmin ? '/admin/dashboard' : '/student/dashboard') : '/login'} 
-              className="flex items-center gap-2.5 group"
-            >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform">
-                <Building2 className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
-                  Campus<span className="text-indigo-600">Ease</span>
-                </span>
-                <span className="hidden sm:block text-[10px] font-semibold uppercase tracking-wider text-slate-600 -mt-1">
-                  Resource & Facility Booking
-                </span>
-              </div>
-            </Link>
-
-            {/* Navigation Links */}
-            {isAuthenticated && (
-              <nav className="hidden md:flex items-center gap-1">
-                {isStudent && (
-                  <>
-                    <NavLink
-                      to="/student/dashboard"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                          isActive
-                            ? 'bg-indigo-50 text-indigo-700 font-semibold'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                        }`
-                      }
-                    >
-                      <LayoutDashboard className="w-4 h-4" />
-                      Dashboard
-                    </NavLink>
-                    <NavLink
-                      to="/resources"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                          isActive
-                            ? 'bg-indigo-50 text-indigo-700 font-semibold'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                        }`
-                      }
-                    >
-                      <Layers className="w-4 h-4" />
-                      Resource Catalog
-                    </NavLink>
-                    <NavLink
-                      to="/student/bookings"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                          isActive
-                            ? 'bg-indigo-50 text-indigo-700 font-semibold'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                        }`
-                      }
-                    >
-                      <CalendarDays className="w-4 h-4" />
-                      My Bookings
-                    </NavLink>
-                  </>
-                )}
-
-                {isAdmin && (
-                  <>
-                    <NavLink
-                      to="/admin/dashboard"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                          isActive
-                            ? 'bg-indigo-50 text-indigo-700 font-semibold'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                        }`
-                      }
-                    >
-                      <LayoutDashboard className="w-4 h-4" />
-                      Overview
-                    </NavLink>
-                    <NavLink
-                      to="/admin/approvals"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                          isActive
-                            ? 'bg-indigo-50 text-indigo-700 font-semibold'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                        }`
-                      }
-                    >
-                      <ClipboardCheck className="w-4 h-4" />
-                      Booking Requests
-                    </NavLink>
-                    <NavLink
-                      to="/admin/resources"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                          isActive
-                            ? 'bg-indigo-50 text-indigo-700 font-semibold'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                        }`
-                      }
-                    >
-                      <Layers className="w-4 h-4" />
-                      Manage Resources
-                    </NavLink>
-                    <NavLink
-                      to="/admin/users"
-                      className={({ isActive }) =>
-                        `flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                          isActive
-                            ? 'bg-indigo-50 text-indigo-700 font-semibold'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                        }`
-                      }
-                    >
-                      <Users className="w-4 h-4" />
-                      Users
-                    </NavLink>
-                  </>
-                )}
-              </nav>
-            )}
+    <>
+      {/* Top University Campus Announcement Strip */}
+      <div className="bg-slate-950 text-slate-300 text-[11px] py-1.5 px-4 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1 font-bold text-amber-400">
+              <School className="w-3 h-3" /> NIT Campus
+            </span>
+            <span className="text-slate-600">•</span>
+            <span className="hidden sm:inline text-slate-400">
+              Department of Academic Infrastructure & Laboratory Planning
+            </span>
           </div>
 
-          {/* Right Action Profile & Logout */}
-          <div className="flex items-center gap-3">
-            {isAuthenticated ? (
-              <div className="flex items-center gap-3">
-                <div className="hidden sm:flex flex-col text-right">
-                  <span className="text-xs font-semibold text-slate-800">
-                    {user?.name || user?.username}
-                  </span>
-                  <span className="text-[11px] text-slate-600 flex items-center justify-end gap-1">
-                    {isAdmin ? (
-                      <span className="inline-flex items-center gap-1 text-indigo-600 font-medium">
-                        <ShieldCheck className="w-3 h-3" /> Admin
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 text-slate-600">
-                        <GraduationCap className="w-3 h-3" /> {user?.department || 'Student'}
-                      </span>
-                    )}
-                  </span>
-                </div>
-
-                <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-sm text-indigo-700">
-                  {(user?.name || user?.username || 'U')[0].toUpperCase()}
-                </div>
-
-                <button
-                  onClick={handleLogout}
-                  title="Logout"
-                  className="p-2 text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
-                >
-                  <LogOut className="w-5 h-5" />
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Link
-                  to="/login"
-                  className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-indigo-600 transition-colors"
-                >
-                  Log In
-                </Link>
-                <Link
-                  to="/register"
-                  className="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm shadow-indigo-200 transition-all"
-                >
-                  Student Register
-                </Link>
-              </div>
-            )}
+          <div className="flex items-center gap-4 text-slate-400">
+            <span className="flex items-center gap-1 text-emerald-400 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              Booking Gateway Active
+            </span>
+            <span className="hidden md:inline text-slate-600">|</span>
+            <span className="hidden md:inline">Helpline: +91 (011) 2659-1000</span>
           </div>
-
         </div>
       </div>
-    </header>
+
+      {/* Main Navigation Header */}
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            
+            {/* Logo & Brand */}
+            <div className="flex items-center gap-8">
+              <Link 
+                to={isAuthenticated ? (isAdmin ? '/admin/dashboard' : '/student/dashboard') : '/login'} 
+                className="flex items-center gap-3 group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-700 via-indigo-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform">
+                  <School className="w-5 h-5 text-amber-300" />
+                </div>
+                <div>
+                  <span className="text-xl font-black tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
+                    Campus<span className="text-indigo-600">Ease</span>
+                  </span>
+                  <span className="hidden sm:block text-[10px] font-bold uppercase tracking-wider text-slate-400 -mt-1">
+                    University Facilities & Labs
+                  </span>
+                </div>
+              </Link>
+
+              {/* Navigation Links */}
+              {isAuthenticated && (
+                <nav className="hidden md:flex items-center gap-1">
+                  {isStudent && (
+                    <>
+                      <NavLink
+                        to="/student/dashboard"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                            isActive
+                              ? 'bg-indigo-50 text-indigo-700 shadow-2xs'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                          }`
+                        }
+                      >
+                        <LayoutDashboard className="w-4 h-4" />
+                        Student Portal
+                      </NavLink>
+                      <NavLink
+                        to="/resources"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                            isActive
+                              ? 'bg-indigo-50 text-indigo-700 shadow-2xs'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                          }`
+                        }
+                      >
+                        <Layers className="w-4 h-4" />
+                        Explore Facilities
+                      </NavLink>
+                      <NavLink
+                        to="/student/bookings"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                            isActive
+                              ? 'bg-indigo-50 text-indigo-700 shadow-2xs'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                          }`
+                        }
+                      >
+                        <CalendarDays className="w-4 h-4" />
+                        My Reservations
+                      </NavLink>
+                    </>
+                  )}
+
+                  {isAdmin && (
+                    <>
+                      <NavLink
+                        to="/admin/dashboard"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                            isActive
+                              ? 'bg-indigo-50 text-indigo-700 shadow-2xs'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                          }`
+                        }
+                      >
+                        <LayoutDashboard className="w-4 h-4" />
+                        Command Overview
+                      </NavLink>
+                      <NavLink
+                        to="/admin/approvals"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                            isActive
+                              ? 'bg-indigo-50 text-indigo-700 shadow-2xs'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                          }`
+                        }
+                      >
+                        <ClipboardCheck className="w-4 h-4" />
+                        Approval Queue
+                      </NavLink>
+                      <NavLink
+                        to="/admin/resources"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                            isActive
+                              ? 'bg-indigo-50 text-indigo-700 shadow-2xs'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                          }`
+                        }
+                      >
+                        <Layers className="w-4 h-4" />
+                        Campus Catalog
+                      </NavLink>
+                      <NavLink
+                        to="/admin/users"
+                        className={({ isActive }) =>
+                          `flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+                            isActive
+                              ? 'bg-indigo-50 text-indigo-700 shadow-2xs'
+                              : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                          }`
+                        }
+                      >
+                        <Users className="w-4 h-4" />
+                        Roster
+                      </NavLink>
+                    </>
+                  )}
+                </nav>
+              )}
+            </div>
+
+            {/* Right Action Profile & Logout */}
+            <div className="flex items-center gap-3">
+              {isAuthenticated ? (
+                <div className="flex items-center gap-3">
+                  <div className="hidden sm:flex flex-col text-right">
+                    <span className="text-xs font-bold text-slate-900 flex items-center justify-end gap-1">
+                      {user?.name || user?.username}
+                    </span>
+                    <span className="text-[11px] text-slate-500 flex items-center justify-end gap-1">
+                      {isAdmin ? (
+                        <span className="inline-flex items-center gap-1 text-indigo-700 font-semibold">
+                          <ShieldCheck className="w-3 h-3 text-indigo-600" /> Facility Admin
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 text-slate-600 font-medium">
+                          <GraduationCap className="w-3 h-3 text-indigo-600" /> {user?.department || 'Student'}
+                        </span>
+                      )}
+                    </span>
+                  </div>
+
+                  <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center font-black text-sm text-indigo-700 shadow-2xs">
+                    {(user?.name || user?.username || 'U')[0].toUpperCase()}
+                  </div>
+
+                  <button
+                    onClick={handleLogout}
+                    title="Sign Out"
+                    className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link
+                    to="/login"
+                    className="px-4 py-2 text-xs font-bold text-slate-700 hover:text-indigo-600 transition-colors"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="px-4 py-2 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm shadow-indigo-200 transition-all"
+                  >
+                    New Student
+                  </Link>
+                </div>
+              )}
+            </div>
+
+          </div>
+        </div>
+      </header>
+    </>
   );
 };
 
